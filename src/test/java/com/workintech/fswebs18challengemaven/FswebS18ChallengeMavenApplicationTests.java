@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -66,7 +65,6 @@ class FswebS18ChallengeMavenApplicationTests {
 		card2.setType(null);
 		card2.setValue(10);
 	}
-
 
 	@Test
 	@DisplayName("application properties istenilenler eklendi mi?")
@@ -160,7 +158,7 @@ class FswebS18ChallengeMavenApplicationTests {
 		updatedCard.setType(Type.KING);
 		given(cardRepository.update(any())).willReturn(updatedCard);
 
-		mockMvc.perform(put("/cards/")
+		mockMvc.perform(put("/cards")
 						.contentType(MediaType.APPLICATION_JSON)
 						.content(objectMapper.writeValueAsString(updatedCard)))
 				.andExpect(status().isOk())
